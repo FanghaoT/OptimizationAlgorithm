@@ -26,21 +26,8 @@ class PSO:
         self.poprange = poprange
         self.speedrange = speedrange
 
-        # self.particles = []
-        # self.gbest = None
-        # self.gbest_val = math.inf
-        # self.gbest_pos = None
-        # self.gbest_iter = 0
         self.gbest_history = np.empty(shape=[0, 1])
-        # self.gbest_val_history = []
         self.gbest_pos_history = np.empty(shape=[0, self.dim])
-        # self.gbest_iter_history = []
-        # self.gbest_history.append(self.gbest_val)
-        # self.gbest_val_history.append(self.gbest_val)
-        # self.gbest_pos_history.append(self.gbest_pos)
-        # self.gbest_iter_history.append(self.gbest_iter)
-        # self.init_particles()
-        # self.init_gbest()
 
     def init_particles(self):
         self.pop = np.empty(shape=[0, self.dim])
@@ -56,12 +43,8 @@ class PSO:
         self.gbest_fitness = np.max(self.fitness).copy()
         self.pbest = self.pop.copy()
         self.pbest_fitness = self.fitness.copy()
-        # self.gbest_pos = self.gbest
-        # self.gbest_iter = 0
         self.gbest_history = np.append(self.gbest_history,self.gbest_fitness)
-        # self.gbest_val_history.append(self.gbest_val)
         self.gbest_pos_history = np.append(self.gbest_pos_history,self.gbest)
-        # self.gbest_iter_history.append(self.gbest_iter)
 
     def fitness_func(self,x):
         if (x[0]==0)&(x[1]==0):
@@ -96,12 +79,8 @@ class PSO:
         if self.pbest_fitness.max()>self.gbest_fitness:
             self.gbest = self.pop[np.argmax(self.pbest_fitness)].copy()
             self.gbest_fitness = self.pbest_fitness.max().copy()
-            # self.gbest_pos = self.gbest.copy()
-            # self.gbest_iter = 0
             self.gbest_history = np.append(self.gbest_history,self.gbest_fitness)
-            # self.gbest_val_history.append(self.gbest_val)
             self.gbest_pos_history = np.append(self.gbest_pos_history,self.gbest,axis=0)
-            # self.gbest_iter_history.append(self.gbest_iter)
 
     def plot_function(self):
         fig = plt.figure() 
@@ -124,9 +103,6 @@ class PSO:
         for i in range(self.max_iter):
             self.update_gbest()
         return self.gbest_history, self.gbest_pos_history
-
-
-
 
 if __name__ == "__main__":
     pso = PSO()
