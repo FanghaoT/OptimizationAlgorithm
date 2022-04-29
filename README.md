@@ -1,8 +1,3 @@
 # OptimizationAlgorithm
- Basic optimization algorithms including PSO, GA
+Heuristic optimization algorithms in Python
 
- #测试改动
-
- #测试改动222
-
- #测试改动333
